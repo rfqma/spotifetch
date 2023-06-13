@@ -54,7 +54,7 @@ const TopArtists = () => {
                         </button>
                     </Link>
                 </div>
-                <div className="grid items-center justify-center grid-cols-3 gap-4 m-20">
+                <div className="items-center justify-center hidden grid-cols-3 gap-4 m-20 lg:grid md:hidden sm:hidden">
                     {
                         userTopArtists.slice(0, 9).map((topArtists, index) => (
                             <Link href={"https://open.spotify.com/artist/" + topArtists.id}>
@@ -67,6 +67,35 @@ const TopArtists = () => {
                                     />
                                     <div class="px-6 pt-4">
                                         <div class="font-bold text-xl mb-2">{(index + 1) + " " + topArtists.name}</div>
+                                    </div>
+                                    <div class="px-6 pb-2">
+                                        {
+                                            topArtists.genres.slice(0, 1).map((topArtistsGenres, index) => (
+
+                                                <span key={index} class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#{topArtistsGenres}</span>
+
+                                            ))
+                                        }
+                                    </div>
+
+                                </div>
+                            </Link>
+                        ))
+                    }
+                </div>
+                <div className="items-center justify-center grid-cols-3 gap-4 m-20 lg:hidden sm:block md:block">
+                    {
+                        userTopArtists.slice(0, 9).map((topArtists, index) => (
+                            <Link href={"https://open.spotify.com/artist/" + topArtists.id}>
+                                <div key={topArtists.id} class="bg-black m-5 max-w-sm rounded overflow-hidden shadow-lg">
+                                    <Image
+                                        src={topArtists.images[1].url}
+                                        width={300}
+                                        height={300}
+                                        alt='${userTopArtists.name} Picture'
+                                    />
+                                    <div class="px-6 pt-4">
+                                        <div class="font-bold text-xl mb-2">{(index + 1) + ". " + topArtists.name}</div>
                                     </div>
                                     <div class="px-6 pb-2">
                                         {

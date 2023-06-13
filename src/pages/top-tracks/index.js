@@ -71,7 +71,33 @@ const TopTracks = () => {
                         </button>
                     </Link>
                 </div>
-                <div className="grid items-center justify-center grid-cols-3 gap-4 m-20">
+                <div className="items-center justify-center hidden grid-cols-3 gap-4 m-20 lg:grid md:hidden sm:hidden">
+                    {
+                        userTopTracks.slice(0, 6).map((topTracks) => (
+                            <Link href={topTracks.external_urls.spotify}>
+                                <div key={topTracks.id} class="bg-black m-5 max-w-sm rounded overflow-hidden shadow-lg">
+                                    <Image
+                                        src={topTracks.album.images[0].url}
+                                        width={300}
+                                        height={300}
+                                        alt='${userTopTracks.name} Picture'
+                                    />
+                                    <div class="px-3 pt-3">
+                                        <div class="flex flex-row justify-between">
+                                            <div class="font-bold text-xl">{topTracks.name}</div>
+                                            <div class="text-xs mb-2"><DurationConverter durationMs={topTracks.duration_ms} /></div>
+                                        </div>
+                                        <div class="text-sm mb-2">by {topTracks.artists[0].name}</div>
+                                        <Link href={topTracks.album.external_urls.spotify}>
+                                            <div class="text-xs mb-2"><TextLimit text={'from: ' + topTracks.album.name} limit={30} /></div>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </Link>
+                        ))
+                    }
+                </div>
+                <div className="items-center justify-center grid-cols-3 gap-4 m-20 lg:hidden sm:block md:block">
                     {
                         userTopTracks.slice(0, 6).map((topTracks) => (
                             <Link href={topTracks.external_urls.spotify}>
