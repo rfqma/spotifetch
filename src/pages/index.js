@@ -2,6 +2,7 @@
 import Head from 'next/head'
 import { useEffect, useState } from "react"
 import Link from "next/link"
+import { useRouter } from 'next/router'
 
 //* Import External Libraries
 import axios from 'axios'
@@ -13,7 +14,7 @@ import styles from '@/styles/Home.module.css'
 //* Function
 export default function Home() {
 
-  //* Authentication & Authorization
+  //* Authentication & Authorization Variables
   const CLIENT_ID = process.env.CLIENT_ID
   const REDIRECT_URI = process.env.REDIRECT_URI
   const AUTH_ENDPOINT = process.env.AUTH_ENDPOINT
@@ -22,6 +23,9 @@ export default function Home() {
   //* State
   const [token, setToken] = useState(null)
   const [userProfile, setUserProfile] = useState(null)
+
+  //* Others
+  const router = useRouter()
 
 
   useEffect(() => {
@@ -59,6 +63,8 @@ export default function Home() {
   const Logout = () => {
     setToken("")
     window.localStorage.removeItem("token")
+    router.push('/')
+    window.location.reload()
   }
 
   return (
@@ -115,6 +121,13 @@ export default function Home() {
                     <button className="text-white  bg-[#000] hover:bg-[#000]/80 focus:ring-4 space-x-4 focus:ring-[#000]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:hover:bg-[#09851e]/80 dark:focus:ring-[#09851e]/40 mr-2 mb-2">
                       <div className='flex space-x-4 '>
                         Your Top Artists
+                      </div>
+                    </button>
+                  </Link>
+                  <Link href='/top-tracks'>
+                    <button className="text-white  bg-[#000] hover:bg-[#000]/80 focus:ring-4 space-x-4 focus:ring-[#000]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:hover:bg-[#09851e]/80 dark:focus:ring-[#09851e]/40 mr-2 mb-2">
+                      <div className='flex space-x-4 '>
+                        Your Top Tracks
                       </div>
                     </button>
                   </Link>

@@ -38,11 +38,10 @@ const TopArtists = () => {
 
         fetchUserTopArtists()
     }, [])
-    console.log(userTopArtists);
     return (
         <>
             <Head>
-                <title>🚀 Your Spotify Top Artists</title>
+                <title>🚀 Your Spotify 9 Top Artists</title>
                 <meta name="description" content="" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
